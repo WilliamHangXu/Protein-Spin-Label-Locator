@@ -58,8 +58,8 @@ run_topcons(pdb_id)
 print("Calculating conservation score...")
 # Run Consurf
 getCons = ConsurfRunner(pdb_id=pdb_id, email=email, job_id=job_id)
-chain_id = getCons.get_chain_id()
-# getCons.run_job()
+chain_id = getCons.out_chain_id()
+getCons.run_job()
 
 print("Calculating distances between qualified residues...")
 # # Calculate distance

@@ -9,7 +9,14 @@ import requests
 
 
 r"""
-This program calculates conservation scores using the Consurf server.
+Classname: ConsurfRunner
+Description: runs the Consurf server to calculate the conservation score for each residue in a protein.
+Variables:
+    self.pdb_id: PDB ID of the protein
+    self.email: User's email that receives notification when the job is done
+    self.job_id: Job ID for the job.
+    self.chain_id: Chain Identifier in the PDB file
+    self.q_seq: query sequence of MSA.
 
 Input: the required parameters of the server, including a PDB file and a MSA file (in clustal format)
 Output: a text file containing conservation score for each amino acid.
@@ -44,15 +51,29 @@ class ConsurfRunner:
             email,
             job_id
                  ):
-        self.pdb_id = pdb_id
-        self.email = email
-        self.chain_id = self._get_chainID()
-        self.q_seq = self._get_q_seq()
-        self.job_id = job_id
 
-    def _get_chainID(self):
+        r"""
+        Object constructor.
+        :param pdb_id: PDB ID of the protein
+        :param email: User's email that receives notification when the job is done
+        :param job_id: Job ID for the job
+        """
+
+        self._pdb_id = pdb_id
+        self._email = email
+        self._chain_id = self._get_chain_id()
+        self._q_seq = self._get_q_seq()
+        self._job_id = job_id
+
+    def _get_chain_id(self) -> str:
+
+        r"""
+        Gets user's input for chain id and checks if the chain id is present in the PDB file.
+        :return: A valid chain id
+        """
+
         current_path = os.getcwd()
-        PDB_path = os.path.join(current_path, f"{self.pdb_id}.pdb")
+        PDB_path = os.path.join(current_path, f"{self._pdb_id}.pdb")
         chain_id_list = []
         with open(PDB_path, "r") as file:
             line = file.readline()
@@ -72,11 +93,17 @@ class ConsurfRunner:
                 break
             else:
                 chain_user = input("Chain identifier invalid. Please try again: ")
-        self.chain_id = chain_user
+        return chain_user
 
-    def _get_q_seq(self):
+    def _get_q_seq(self) -> str:
+
+        r"""
+        Gets user's input for query sequence and checks if the query sequence is present in the MSA file.
+        :return: A valid query sequence
+        """
+
         current_path = os.getcwd()
-        MSA_path = os.path.join(current_path, f"{self.pdb_id}.a3m")
+        MSA_path = os.path.join(current_path, f"{self._pdb_id}.a3m")
         q_seq_list = []
         with open(MSA_path, "r") as file:
             line = file.readline()
@@ -90,12 +117,25 @@ class ConsurfRunner:
                 break
             else:
                 q_seq_user = input("Chain identifier invalid. Please try again: ")
-        self.q_seq = q_seq_user
+        return q_seq_user
 
-    def get_chain_id(self):
-        return self.chain_id
+    def out_chain_id(self) -> str:
+
+        r"""
+        Access the chain id from the main program.
+        :return: chain_id
+        """
+
+        return self._chain_id
 
     def run_job(self):
+
+        r"""
+        The program opens a Chrome window and runs the Consurf server and download result automatically.
+        THIS MAY TAKE HOURS.
+        :return: N/A
+        """
+
         current_path = os.getcwd()
 
         driver = webdriver.Chrome(ChromeDriverManager().install())
@@ -130,7 +170,7 @@ class ConsurfRunner:
 
         # Upload PDB file
         pdb_FILE = driver.find_element(By.XPATH, "//*[@id='pdb_file_field']")
-        PDB_path = os.path.join(current_path, f"{self.pdb_id}.pdb")
+        PDB_path = os.path.join(current_path, f"{self._pdb_id}.pdb")
         pdb_FILE.send_keys(PDB_path)
         print("Analyzing PDB...")
 
@@ -157,7 +197,7 @@ class ConsurfRunner:
         chainID_drop = Select(chainID)
 
         # Choose a chain identifier
-        chainID_drop.select_by_value(self.chain_id)
+        chainID_drop.select_by_value(self._chain_id)
 
         # Wait for the page to load
         WebDriverWait(driver, 15).until(
@@ -175,7 +215,7 @@ class ConsurfRunner:
 
         # Upload MSA
         MSA_upload = driver.find_element(By.XPATH, "//*[@id='fileSelect']")
-        MSA_path = os.path.join(current_path, f"{self.pdb_id}_MSA.aln")
+        MSA_path = os.path.join(current_path, f"{self._pdb_id}_MSA.aln")
         MSA_upload.send_keys(MSA_path)
         print("Fetching query sequences...")
 
@@ -187,7 +227,7 @@ class ConsurfRunner:
         # Choose query sequence name
         QS = driver.find_element(By.XPATH, "//*[@id='queryName']")
         QS_drop = Select(QS)
-        QS_drop.select_by_visible_text(self.q_seq)
+        QS_drop.select_by_visible_text(self._q_seq)
 
         # Update selection
         update_selection = driver.find_element(By.XPATH, "/html/body/div[3]/div/form/div[3]/div[2]/div[1]/div[2]/a[2]")
@@ -209,11 +249,11 @@ class ConsurfRunner:
 
         # Provide a job name
         job_name = driver.find_element(By.ID, "qtitle")
-        job_name.send_keys(self.job_id)
+        job_name.send_keys(self._job_id)
 
         # Provide a Email to receive update
         email = driver.find_element(By.XPATH, "/html/body/div[3]/div/form/div[6]/div[8]/input")
-        email.send_keys(self.email)
+        email.send_keys(self._email)
 
         # Submit Job
         print("Submitting job...")
@@ -234,7 +274,7 @@ class ConsurfRunner:
         )
 
         result = requests.get(f"https://consurf.tau.ac.il/results/{job_id}/consurf.grades", verify=False)
-        with open(f"{self.pdb_id}_CONS.txt", "w") as out:
+        with open(f"{self._pdb_id}_CONS.txt", "w") as out:
             out.write(result.text)
 
         driver.quit()
