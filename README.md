@@ -10,7 +10,7 @@ In a protein, amino acid residues onto which a spin label can be attached have t
   3. Not conserved
 From the residues that satisfy the above three criteria, we select pairs where the distance between two residues are in an appropriate range.
 
-When `main.py` is run, the user is asked for the PDB ID of a protein, and these criteria are checked by the `DSSPRunner` class defined in `dssp_runner.py`, the `TopconsRunner` class defined in `topcons_runner.py, and the `ConsurfRunner' class defined in `consurf_runner.py`, respectively, and the results are stored in a `Protein` object constructed based on the protein the user provided. 
+When `main.py` is run, the user is asked for the PDB ID of a protein, and these criteria are checked by the `DSSPRunner` class defined in `dssp_runner.py`, the `TopconsRunner` class defined in `topcons_runner.py`, and the `ConsurfRunner' class defined in `consurf_runner.py`, respectively, and the results are stored in a `Protein` object constructed based on the protein the user provided. 
 After getting a set of qualified residues, the distances between each pair of residue are calculated, and the qualified pairs are displayed.
 ## Acknowledgement
 Thank the Mchaourab Lab of Vanderbilt University, especially Julia, Richard and Hassane for their generous instructions on Bioinformatics.
