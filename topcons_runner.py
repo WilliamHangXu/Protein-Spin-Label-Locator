@@ -13,6 +13,10 @@ def run_topcons(pdb_id):
     Runs the topcons server to determine membrane affiliation of residues
     :param pdb_id: PDB ID of the protein
     :return: N/A
+
+    Reference:
+    The TOPCONS web server for combined membrane protein topology and signal peptide prediction.
+    Tsirigos KD*, Peters C*, Shu N*, Käll L and Elofsson A (2015) Nucleic Acids Research 43 (Webserver issue), W401-W407.
     """
 
     # Starts a webdriver
