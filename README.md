@@ -23,46 +23,46 @@ Thanks to the scholars who have been contributing to the Computational Biology w
 ## Reference
 Please read the headers of the programs to see details.<br />
 
-    Ashkenazy H., Abadi S., Martz E., Chay O., Mayrose I., Pupko T., and Ben-Tal N. 2016<br />
-    ConSurf 2016: an improved methodology to estimate and visualize evolutionary conservation in macromolecules<br />
-    Nucl. Acids Res. 2016; DOI: 10.1093/nar/gkw408; PMID: 27166375<br />
+    Ashkenazy H., Abadi S., Martz E., Chay O., Mayrose I., Pupko T., and Ben-Tal N. 2016
+    ConSurf 2016: an improved methodology to estimate and visualize evolutionary conservation in macromolecule
+    Nucl. Acids Res. 2016; DOI: 10.1093/nar/gkw408; PMID: 27166375
 
-    Celniker G., Nimrod G., Ashkenazy H., Glaser F., Martz E., Mayrose I., Pupko T., and Ben-Tal N. 2013.<br />
-    ConSurf: Using Evolutionary Data to Raise Testable Hypotheses about Protein Function<br />
-    Isr. J. Chem. 2013 March 10, doi: 10.1002/ijch.201200096<br />
+    Celniker G., Nimrod G., Ashkenazy H., Glaser F., Martz E., Mayrose I., Pupko T., and Ben-Tal N. 2013.
+    ConSurf: Using Evolutionary Data to Raise Testable Hypotheses about Protein Function
+    Isr. J. Chem. 2013 March 10, doi: 10.1002/ijch.201200096
 
-    Ashkenazy H., Erez E., Martz E., Pupko T. and Ben-Tal N. 2010<br />
-    ConSurf 2010: calculating evolutionary conservation in sequence and structure of proteins and nucleic acids.<br />
-    Nucl. Acids Res. 2010; DOI: 10.1093/nar/gkq399; PMID: 20478830<br />
+    Ashkenazy H., Erez E., Martz E., Pupko T. and Ben-Tal N. 2010
+    ConSurf 2010: calculating evolutionary conservation in sequence and structure of proteins and nucleic acids.
+    Nucl. Acids Res. 2010; DOI: 10.1093/nar/gkq399; PMID: 20478830
 
-    Landau M., Mayrose I., Rosenberg Y., Glaser F., Martz E., Pupko T. and Ben-Tal N. 2005.<br />
-    ConSurf 2005: the projection of evolutionary conservation scores of residues on protein structures.<br />
-    Nucl. Acids Res. 33:W299-W302.<br />
+    Landau M., Mayrose I., Rosenberg Y., Glaser F., Martz E., Pupko T. and Ben-Tal N. 2005.
+    ConSurf 2005: the projection of evolutionary conservation scores of residues on protein structures.
+    Nucl. Acids Res. 33:W299-W302.
 
-    Glaser F., Pupko T., Paz I., Bell R.E., Bechor D., Martz E. and Ben-Tal N. 2003.<br />
-    ConSurf: Identification of Functional Regions in Proteins by Surface-Mapping of Phylogenetic Information.<br />
-    Bioinformatics 19:163-164.<br />
+    Glaser F., Pupko T., Paz I., Bell R.E., Bechor D., Martz E. and Ben-Tal N. 2003.
+    ConSurf: Identification of Functional Regions in Proteins by Surface-Mapping of Phylogenetic Information.
+    Bioinformatics 19:163-164.
     
-    A series of PDB related databases for everyday needs.<br />
-    Wouter G Touw, Coos Baakman, Jon Black, Tim AH te Beek, E Krieger, Robbie P Joosten, Gert Vriend.<br />
-    Nucleic Acids Research 2015 January; 43(Database issue): D364-D368.<br />
+    A series of PDB related databases for everyday needs.
+    Wouter G Touw, Coos Baakman, Jon Black, Tim AH te Beek, E Krieger, Robbie P Joosten, Gert Vriend.
+    Nucleic Acids Research 2015 January; 43(Database issue): D364-D368.
+    
+    Dictionary of protein secondary structure: pattern recognition of hydrogen-bonded and geometrical features.
+    Kabsch W, Sander C, Biopolymers. 1983 22 2577-2637.
+    PMID: 6667333; UI: 84128824.
+    
+    Clustering huge protein sequence sets in linear time
+    https://doi.org/10.1038/s41467-018-04964-5
+    
+    MMseqs2 enables sensitive protein sequence searching for the analysis
+    of massive data sets"
+    https://doi.org/10.1038/nbt.3988
+    
+    Madeira F, Pearce M, Tivey ARN, et al.
+    Search and sequence analysis tools services from EMBL-EBI in 2022.
 
-    Dictionary of protein secondary structure: pattern recognition of hydrogen-bonded and geometrical features.<br />
-    Kabsch W, Sander C, Biopolymers. 1983 22 2577-2637.<br />
-    PMID: 6667333; UI: 84128824.<br />
+    Nucleic Acids Research. 2022 Apr:gkac240.
+    DOI: 10.1093/nar/gkac240. PMID: 35412617; PMCID: PMC9252731.
     
-    Clustering huge protein sequence sets in linear time<br />
-    https://doi.org/10.1038/s41467-018-04964-5<br />
-    
-    MMseqs2 enables sensitive protein sequence searching for the analysis<br />
-    of massive data sets"<br />
-    https://doi.org/10.1038/nbt.3988<br />
-    
-    Madeira F, Pearce M, Tivey ARN, et al.<br />
-    Search and sequence analysis tools services from EMBL-EBI in 2022.<br />
-
-    Nucleic Acids Research. 2022 Apr:gkac240.<br />
-    DOI: 10.1093/nar/gkac240. PMID: 35412617; PMCID: PMC9252731.<br />
-    
-    The TOPCONS web server for combined membrane protein topology and signal peptide prediction.<br />
-    Tsirigos KD*, Peters C*, Shu N*, Käll L and Elofsson A (2015) Nucleic Acids Research 43 (Webserver issue), W401-W407.<br />
+    The TOPCONS web server for combined membrane protein topology and signal peptide prediction.
+    Tsirigos KD*, Peters C*, Shu N*, Käll L and Elofsson A (2015) Nucleic Acids Research 43 (Webserver issue), W401-W407.
