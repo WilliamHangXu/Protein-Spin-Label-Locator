@@ -24,7 +24,7 @@ class Protein:
         idx = 1
         for i in seq:
             aa = AminoAcid()
-            aa.setnum(f"{idx}")
+            aa.set_num(f"{idx}")
             aa.setaa(i)
             self._seqlist.append(aa)
             idx += 1
@@ -39,7 +39,7 @@ class Protein:
         for i in self._seqlist:
             i.aadisplay()
 
-    def checksecstruct(self):
+    def check_secstruct(self):
 
         r"""
         TO BE COMPLETED
@@ -50,7 +50,7 @@ class Protein:
         return 0
 
 
-    def checksmem(self):
+    def check_mem(self):
 
         r"""
         TO BE COMPLETED
@@ -61,7 +61,7 @@ class Protein:
         return 0
 
 
-    def checkcons(self):
+    def check_cons(self):
 
         r"""
         TO BE COMPLETED

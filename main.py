@@ -14,7 +14,7 @@ r"""
 Protein Spin Label Locator
 """
 
-email = "willxh.68209@gmail.com"
+email = input("Please provide your email address: ")
 now = datetime.now()
 dt = now.strftime("%m_%d_%Y_%H_%M_%S")
 
@@ -64,6 +64,10 @@ print("Calculating conservation score...")
 getCons = ConsurfRunner(pdb_id=pdb_id, email=email, job_id=job_id)
 chain_id = getCons.out_chain_id()
 getCons.run_job()
+
+print("Analyzing results...")
+# Read the results fetched by the above tools and modify the Protein object accordingly to record the properties of
+# AminoAcids.
 
 print("Calculating distances between qualified residues...")
 # # Calculate distance

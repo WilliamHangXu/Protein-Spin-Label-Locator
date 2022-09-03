@@ -36,7 +36,7 @@ class AminoAcid:
         self._mem = mem
         self._secstruct = secstruct
 
-    def setnum(self, num: str):
+    def set_num(self, num: str):
 
         r"""
         Sets num.
@@ -46,7 +46,7 @@ class AminoAcid:
 
         self._num = num
 
-    def setaa(self, aatype: str):
+    def set_aa(self, aatype: str):
 
         r"""
         Sets amino acid identity.
@@ -56,7 +56,7 @@ class AminoAcid:
 
         self._aa = aatype
 
-    def setcons(self, cons: float):
+    def set_cons(self, cons: float):
 
         r"""
         Sets conservation score.
@@ -66,7 +66,7 @@ class AminoAcid:
 
         self._cons = cons
 
-    def setmem(self, mem: str):
+    def set_mem(self, mem: str):
 
         r"""
         Sets membrane affiliation information
@@ -76,7 +76,7 @@ class AminoAcid:
 
         self._mem = mem
 
-    def setsecstruct(self, secstruct):
+    def set_secstruct(self, secstruct):
 
         r"""
         Sets secondary structure information
@@ -86,7 +86,7 @@ class AminoAcid:
 
         self._secstruct = secstruct
 
-    def getnum(self) -> str:
+    def get_num(self) -> str:
 
         r"""
         Returns num.
@@ -95,7 +95,7 @@ class AminoAcid:
 
         return self._num
 
-    def getaa(self) -> str:
+    def get_aa(self) -> str:
 
         r"""
         Returns aa.
@@ -104,7 +104,7 @@ class AminoAcid:
 
         return self._aa
 
-    def getcons(self) -> float:
+    def get_cons(self) -> float:
 
         r"""
         Returns cons.
@@ -113,7 +113,7 @@ class AminoAcid:
 
         return self._cons
 
-    def getmem(self) -> str:
+    def get_mem(self) -> str:
 
         r"""
         Returns mem.
@@ -122,7 +122,7 @@ class AminoAcid:
 
         return self._mem
 
-    def getsecstruct(self) -> str:
+    def get_secstruct(self) -> str:
 
         r"""
         Returns secstruct.
@@ -131,7 +131,7 @@ class AminoAcid:
 
         return self._secstruct
 
-    def aadisplay(self):
+    def aa_display(self):
 
         r"""
         Prints all stored information in the amino acid object in a ordered manner.
