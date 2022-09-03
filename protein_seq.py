@@ -1,15 +1,15 @@
 from amino_acid import AminoAcid
 
 
-r"""
-Class name: Protein
-Description: A Protein object is a list of AminoAcid objects. It is convenient for mass operations on AminoAcids.
-Variables:
-    self.pdb_id: PDB ID of the protein
-    self.seqlist: A list of Amino Acids
-"""
-
 class Protein:
+
+    r"""
+    Class name: Protein
+    Description: A Protein object is a list of AminoAcid objects. It is convenient for mass operations on AminoAcids.
+    Variables:
+        self.pdb_id: PDB ID of the protein
+        self.seqlist: A list of Amino Acids
+    """
 
     def __init__(self, seq: str, pdb_id: str):
 

@@ -10,6 +10,10 @@ from topcons_runner import run_topcons
 from consurf_runner import ConsurfRunner
 
 
+r"""
+Protein Spin Label Locator
+"""
+
 email = "willxh.68209@gmail.com"
 now = datetime.now()
 dt = now.strftime("%m_%d_%Y_%H_%M_%S")

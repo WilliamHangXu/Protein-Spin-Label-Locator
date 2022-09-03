@@ -8,43 +8,43 @@ from selenium.webdriver.support.ui import Select
 import requests
 
 
-r"""
-Classname: ConsurfRunner
-Description: runs the Consurf server to calculate the conservation score for each residue in a protein.
-Variables:
-    self.pdb_id: PDB ID of the protein
-    self.email: User's email that receives notification when the job is done
-    self.job_id: Job ID for the job.
-    self.chain_id: Chain Identifier in the PDB file
-    self.q_seq: query sequence of MSA.
-
-Input: the required parameters of the server, including a PDB file and a MSA file (in clustal format)
-Output: a text file containing conservation score for each amino acid.
-
-Reference:
-Ashkenazy H., Abadi S., Martz E., Chay O., Mayrose I., Pupko T., and Ben-Tal N. 2016
-ConSurf 2016: an improved methodology to estimate and visualize evolutionary conservation in macromolecules
-Nucl. Acids Res. 2016; DOI: 10.1093/nar/gkw408; PMID: 27166375
-
-Celniker G., Nimrod G., Ashkenazy H., Glaser F., Martz E., Mayrose I., Pupko T., and Ben-Tal N. 2013.
-ConSurf: Using Evolutionary Data to Raise Testable Hypotheses about Protein Function
-Isr. J. Chem. 2013 March 10, doi: 10.1002/ijch.201200096
-
-Ashkenazy H., Erez E., Martz E., Pupko T. and Ben-Tal N. 2010
-ConSurf 2010: calculating evolutionary conservation in sequence and structure of proteins and nucleic acids.
-Nucl. Acids Res. 2010; DOI: 10.1093/nar/gkq399; PMID: 20478830
-
-Landau M., Mayrose I., Rosenberg Y., Glaser F., Martz E., Pupko T. and Ben-Tal N. 2005.
-ConSurf 2005: the projection of evolutionary conservation scores of residues on protein structures.
-Nucl. Acids Res. 33:W299-W302.
-
-Glaser F., Pupko T., Paz I., Bell R.E., Bechor D., Martz E. and Ben-Tal N. 2003.
-ConSurf: Identification of Functional Regions in Proteins by Surface-Mapping of Phylogenetic Information.
-Bioinformatics 19:163-164.
-"""
-
-
 class ConsurfRunner:
+
+    r"""
+    Classname: ConsurfRunner
+    Description: runs the Consurf server to calculate the conservation score for each residue in a protein.
+    Variables:
+        self.pdb_id: PDB ID of the protein
+        self.email: User's email that receives notification when the job is done
+        self.job_id: Job ID for the job.
+        self.chain_id: Chain Identifier in the PDB file
+        self.q_seq: query sequence of MSA.
+
+    Input: the required parameters of the server, including a PDB file and a MSA file (in clustal format)
+    Output: a text file containing conservation score for each amino acid.
+
+    Reference:
+    Ashkenazy H., Abadi S., Martz E., Chay O., Mayrose I., Pupko T., and Ben-Tal N. 2016
+    ConSurf 2016: an improved methodology to estimate and visualize evolutionary conservation in macromolecules
+    Nucl. Acids Res. 2016; DOI: 10.1093/nar/gkw408; PMID: 27166375
+
+    Celniker G., Nimrod G., Ashkenazy H., Glaser F., Martz E., Mayrose I., Pupko T., and Ben-Tal N. 2013.
+    ConSurf: Using Evolutionary Data to Raise Testable Hypotheses about Protein Function
+    Isr. J. Chem. 2013 March 10, doi: 10.1002/ijch.201200096
+
+    Ashkenazy H., Erez E., Martz E., Pupko T. and Ben-Tal N. 2010
+    ConSurf 2010: calculating evolutionary conservation in sequence and structure of proteins and nucleic acids.
+    Nucl. Acids Res. 2010; DOI: 10.1093/nar/gkq399; PMID: 20478830
+
+    Landau M., Mayrose I., Rosenberg Y., Glaser F., Martz E., Pupko T. and Ben-Tal N. 2005.
+    ConSurf 2005: the projection of evolutionary conservation scores of residues on protein structures.
+    Nucl. Acids Res. 33:W299-W302.
+
+    Glaser F., Pupko T., Paz I., Bell R.E., Bechor D., Martz E. and Ben-Tal N. 2003.
+    ConSurf: Identification of Functional Regions in Proteins by Surface-Mapping of Phylogenetic Information.
+    Bioinformatics 19:163-164.
+    """
+
     def __init__(
             self,
             pdb_id,

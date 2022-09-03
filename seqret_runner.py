@@ -2,27 +2,27 @@ import requests
 import time
 
 
-r"""
-Class name: SeqretRunner
-Description: Runs seqret, a sequence/MSA format converter.
-Variables:
-    self.email: user email that gets notification when the job is done.
-    self.job_id: job id
-    self.seq: sequence/MSA to be converted
-    self.mode: the output format. In this context, fasta or clustal.
-    self.server_url: seqret server url
-    self.out_name: output file name
-
-Reference:
-Madeira F, Pearce M, Tivey ARN, et al. 
-Search and sequence analysis tools services from EMBL-EBI in 2022. 
-
-Nucleic Acids Research. 2022 Apr:gkac240. 
-DOI: 10.1093/nar/gkac240. PMID: 35412617; PMCID: PMC9252731.
-"""
-
-
 class SeqretRunner:
+
+    r"""
+    Class name: SeqretRunner
+    Description: Runs seqret, a sequence/MSA format converter.
+    Variables:
+        self.email: user email that gets notification when the job is done.
+        self.job_id: job id
+        self.seq: sequence/MSA to be converted
+        self.mode: the output format. In this context, fasta or clustal.
+        self.server_url: seqret server url
+        self.out_name: output file name
+
+    Reference:
+    Madeira F, Pearce M, Tivey ARN, et al.
+    Search and sequence analysis tools services from EMBL-EBI in 2022.
+
+    Nucleic Acids Research. 2022 Apr:gkac240.
+    DOI: 10.1093/nar/gkac240. PMID: 35412617; PMCID: PMC9252731.
+    """
+
     def __init__(
             self,
             email: str="",

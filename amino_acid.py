@@ -1,18 +1,16 @@
-
-r"""
-Class name: AminoAcid
-Description: An AminoAcid object represents an amino acid residue in a protein sequence. It records the identity, position,
-             conservation score, secondary structure assignment, and membrane affiliation.
-Variables:
-    self._num: the position of the residue in the protein
-    self._aa: the identity of the residue (single-letter amino acid name)
-    self._cons: the conservation score of the residue (from the ConSurf server)
-    self._mem: the membrane affiliation (from the Topcons server)
-    self._secstruct: the type of secondary structure the residue is in (from DSSP)
-"""
-
-
 class AminoAcid:
+
+    r"""
+    Class name: AminoAcid
+    Description: An AminoAcid object represents an amino acid residue in a protein sequence. It records the identity, position,
+                 conservation score, secondary structure assignment, and membrane affiliation.
+    Variables:
+        self._num: the position of the residue in the protein
+        self._aa: the identity of the residue (single-letter amino acid name)
+        self._cons: the conservation score of the residue (from the ConSurf server)
+        self._mem: the membrane affiliation (from the Topcons server)
+        self._secstruct: the type of secondary structure the residue is in (from DSSP)
+    """
 
     def __init__(
             self,

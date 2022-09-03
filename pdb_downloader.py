@@ -2,15 +2,15 @@ import requests
 import os
 
 
-r"""
-Class name: PDBDownloader
-Description: given a PDB ID, downloads the PDB file from Protein Data Bank
-Variables:
-    self._host_url: the url of Protein Data Bank
-    self._pdb_id: PDB ID
-"""
-
 class PDBDownloader:
+
+    r"""
+    Class name: PDBDownloader
+    Description: given a PDB ID, downloads the PDB file from Protein Data Bank
+    Variables:
+        self._host_url: the url of Protein Data Bank
+        self._pdb_id: PDB ID
+    """
 
     def __init__(
             self,

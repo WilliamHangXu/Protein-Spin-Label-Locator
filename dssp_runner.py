@@ -3,31 +3,31 @@ import requests
 import time
 
 
-r"""
-Class name: DSSPRunner
-Description: This program runs Dictionary of Secondary Structure of Proteins (DSSP) through the XSSP API.
-             Uploads a PDB file an get a .dssp file.
-             https://github.com/cmbi/xssp-api
-             Modified from the provided sample API.
-             The server crashes very often. In that case, please contact the developer on GitHub.
-Variables:
-    self.file_name: the PDB file to be uploaded
-    self.server_url: the url of the server
-    self.job_id: job id
-
-Reference:
-A series of PDB related databases for everyday needs.
-Wouter G Touw, Coos Baakman, Jon Black, Tim AH te Beek, E Krieger, Robbie P Joosten, Gert Vriend.
-Nucleic Acids Research 2015 January; 43(Database issue): D364-D368.
-
-Dictionary of protein secondary structure: pattern recognition of hydrogen-bonded and geometrical features.
-Kabsch W, Sander C,
-Biopolymers. 1983 22 2577-2637.
-PMID: 6667333; UI: 84128824.
-"""
-
-
 class DSSPRunner:
+
+    r"""
+    Class name: DSSPRunner
+    Description: This program runs Dictionary of Secondary Structure of Proteins (DSSP) through the XSSP API.
+                 Uploads a PDB file an get a .dssp file.
+                 https://github.com/cmbi/xssp-api
+                 Modified from the provided sample API.
+                 The server crashes very often. In that case, please contact the developer on GitHub.
+    Variables:
+        self.file_name: the PDB file to be uploaded
+        self.server_url: the url of the server
+        self.job_id: job id
+
+    Reference:
+    A series of PDB related databases for everyday needs.
+    Wouter G Touw, Coos Baakman, Jon Black, Tim AH te Beek, E Krieger, Robbie P Joosten, Gert Vriend.
+    Nucleic Acids Research 2015 January; 43(Database issue): D364-D368.
+
+    Dictionary of protein secondary structure: pattern recognition of hydrogen-bonded and geometrical features.
+    Kabsch W, Sander C,
+    Biopolymers. 1983 22 2577-2637.
+    PMID: 6667333; UI: 84128824.
+    """
+
     def __init__(
             self,
             file_name: str = "",
