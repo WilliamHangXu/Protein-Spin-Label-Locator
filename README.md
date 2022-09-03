@@ -1,13 +1,12 @@
 # Protein Spin Label Locator
 ## Description
 ### Purpose
-This set of programs takes a PDB ID of a protein as an input and returns a text file that contains all possible pairs of amino acid residues onto which spin labels can be attached. TL; DR: download all source codes and run `main.py`.
+We attach spin labels onto specific pairs of residues in a protein to study its conformational change. This set of programs takes a PDB ID of a protein as an input and returns a text file that contains all possible pairs of amino acid residues onto which spin labels can be attached. TL; DR: download all source codes and run `main.py`.
 ### Dependencies
 Selenium (Make sure Google Chrome is properly installed)<br />
 Requests<br />
 Numpy
 ### How it works
-We attach spin labels onto specific pairs of residues in a protein to study its conformational change.
 In a protein, amino acid residues onto which a spin label can be attached have the following characteristics:
   1. Found on secondary structure 
   2. Not affiliated to membrane The program `topcons_runner.py` checks this using 
