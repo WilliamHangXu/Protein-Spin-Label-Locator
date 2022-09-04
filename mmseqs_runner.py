@@ -12,11 +12,9 @@ from typing import NoReturn
 
 class MMSeqs2Runner:
 
-    r"""
-    This is a slightly modified version of Diego del Alamo (github: delalamo)'s mmseqs2.py
-    """
-
     r"""Runner object
+    NOTE: This is a slightly modified version of Diego del Alamo (github: delalamo)'s mmseqs2.py
+
     Fetches sequence alignment and templates from MMSeqs2 server
     Based on the function run_mmseqs2 from ColabFold (sokrypton/ColabFold)
     Version 62d7558c91a9809712b022faf9d91d8b183c328c
