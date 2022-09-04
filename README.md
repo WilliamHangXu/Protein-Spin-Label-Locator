@@ -13,6 +13,7 @@ In a protein, amino acid residues onto which a spin label can be attached have t
   1. Found on secondary structure<br />
   2. Not affiliated to membrane<br />
   3. Not conserved<br />
+
 From the residues that satisfy the above three criteria, we select pairs where the distance between two residues are in an appropriate range.
 
 When `main.py` is run, the user is asked for the PDB ID of a protein, and these criteria are checked by the `DSSPRunner` class defined in `dssp_runner.py`, the `TopconsRunner` class defined in `topcons_runner.py`, and the `ConsurfRunner` class defined in `consurf_runner.py`, respectively, and the results are stored in a `Protein` object constructed based on the protein the user provided. 
