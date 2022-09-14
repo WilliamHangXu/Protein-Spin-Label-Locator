@@ -8,26 +8,33 @@ class Protein:
     Description: A Protein object is a list of AminoAcid objects. It is convenient for mass operations on AminoAcids.
     Variables:
         self.pdb_id: PDB ID of the protein
-        self.seqlist: A list of Amino Acids
+        self.seqdict: A dictionary with keys being chain ids and values being lists of AminoAcids.
     """
 
-    def __init__(self, seq: str, pdb_id: str):
+    def __init__(self, pdb_id: str):
 
         r"""
-        Object constructor
-        :param seq: A string of protein sequence
+        Object constructor.
         :param pdb_id: PDB ID of the protein
         """
 
         self._pdb_id = pdb_id
-        self._seqlist = []
-        idx = 1
-        for i in seq:
-            aa = AminoAcid()
-            aa.set_num(f"{idx}")
-            aa.setaa(i)
-            self._seqlist.append(aa)
-            idx += 1
+        self._seqdict = {}
+        with open(f"{self._pdb_id}.pdb", "r") as file:
+            line = file.readline()
+            while not line.startswith("ATOM"):
+                line = file.readline()
+            while line.startswith("ATOM") or line.startswith("TER"):
+                chainID = line.split()[4]
+                self._seqdict[chainID] = []
+                while line.startswith("ATOM"):
+                    order = line.split()[5]
+                    aa = AminoAcid(num=line.split()[5], chain_id=chainID, aa=line.split()[3])
+                    self._seqdict[chainID].append(aa)
+                    while line.startswith("ATOM") and line.split()[5] == order:
+                        line = file.readline()
+                if line.startswith("TER"):
+                    line = file.readline()
 
     def display(self):
 
@@ -36,19 +43,48 @@ class Protein:
         :return: N/A
         """
 
-        for i in self._seqlist:
-            i.aadisplay()
+        for i in self._seqdict:
+            for j in self._seqdict[i]:
+                j.aa_display()
+
+    def get_length(self) -> int:
+
+        r"""
+        Get the number of residues stored in the Protein object.
+        :return:
+        """
+
+        length = 0
+        for i in self._seqdict:
+            length += len(self._seqdict[i])
+        return length
 
     def check_secstruct(self):
 
         r"""
-        TO BE COMPLETED
-        Sets secondary structures for each AminoAcid
+        Reads the .dssp file and sets secondary structures for each AminoAcid.
         :return: N/A
         """
 
-        return 0
-
+        with open(f"{self._pdb_id}.dssp", "r") as file:
+            line = file.readline()
+            while not line.startswith("  #  RESIDUE AA STRUCTURE"):
+                line = file.readline()
+            line = file.readline()
+            while line != "":
+                chainID = line.split()[2]
+                idx = 0
+                while line != "" and line.split()[2] == chainID:
+                    if line.split()[4] in "HBEGITS":
+                        self._seqdict[line.split()[2]][idx].set_secstruct(line.split()[4])
+                    else:
+                        self._seqdict[line.split()[2]][idx].set_secstruct("n")
+                    idx += 1
+                    line = file.readline()
+                if line != "":
+                    line = file.readline()
+                else:
+                    break
 
     def check_mem(self):
 
@@ -57,6 +93,12 @@ class Protein:
         Sets membrane affiliation for each AminoAcid
         :return: N/A
         """
+
+        # with open(f"{self._pdb_id}_MEM.txt", "r") as file:
+
+
+
+
 
         return 0
 
