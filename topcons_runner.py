@@ -19,6 +19,13 @@ def run_topcons(pdb_id):
     Tsirigos KD*, Peters C*, Shu N*, Käll L and Elofsson A (2015) Nucleic Acids Research 43 (Webserver issue), W401-W407.
     """
 
+    # Data preparation. Extract sequence from the MSA fasta file
+    with open(f"{pdb_id}_MSA.fasta", "r") as infile:
+        with open(f"{pdb_id}_SEQ.fasta", "w") as outfile:
+            for i in range(2):
+                line = infile.readline()
+                outfile.write(line)
+
     # Starts a webdriver
     driver = webdriver.Chrome(ChromeDriverManager().install())
     server_url = "https://topcons.cbr.su.se/pred/"
