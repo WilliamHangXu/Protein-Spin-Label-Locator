@@ -215,7 +215,7 @@ class ConsurfRunner:
 
         # Upload MSA
         MSA_upload = driver.find_element(By.XPATH, "//*[@id='fileSelect']")
-        MSA_path = os.path.join(current_path, f"{self._pdb_id}_MSA.aln")
+        MSA_path = os.path.join(current_path, f"{self._pdb_id}_MSA.fasta")
         MSA_upload.send_keys(MSA_path)
         print("Fetching query sequences...")
 
