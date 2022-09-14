@@ -2,6 +2,7 @@ import os
 from pdb_downloader import PDBDownloader
 from primary_sequence import get_seq
 from protein_seq import Protein
+from msa_converter import msa_convert
 from seqret_runner import SeqretRunner
 from mmseqs_runner import MMSeqs2Runner
 from dssp_runner import DSSPRunner
@@ -18,7 +19,6 @@ email = input("Please provide your email address: ")
 now = datetime.now()
 dt = now.strftime("%m_%d_%Y_%H_%M_%S")
 
-
 # Ask the user for a PDB ID and then download the PDB file.
 pdbD = PDBDownloader()
 pdb_id = pdbD.get_user_input()
@@ -32,7 +32,7 @@ PDB_path = pdbD.download_pdb()
 seq = get_seq(PDB_path)
 
 # create AA sequence
-protein = Protein(pdb_id=pdb_id, seq=seq)
+protein = Protein(pdb_id=pdb_id)
 
 print("Starting to convert the sequence into FASTA format...")
 
@@ -45,32 +45,32 @@ print("Starting to fetch MSA...")
 getMSA = MMSeqs2Runner(job=job_id, seq=seq)
 getMSA.run_job(pdb_id)
 print("MSA fetched. Starting to convert MSA into CLUSTAL format...")
-with open(f"{pdb_id}.a3m", "r") as a3m:
-    MSA_str = a3m.read()
-MSA_conv = SeqretRunner(email=email, job_id=job_id, mode="clustal", seq=MSA_str, out_name=f"{pdb_id}_MSA")
-MSA_path = MSA_conv.run_job()
+msa_convert(pdb_id)
 
 print("Predicting secondary structures...")
 # Run DSSP
 getSecStruct = DSSPRunner(file_name=pdb_id)
 getSecStruct.run_job()
 
+protein.check_secstruct()
+protein.display()
+
 print("Predicting membrane exposure...")
 # Run Topcons
 run_topcons(pdb_id)
 
-print("Calculating conservation score...")
+#print("Calculating conservation score...")
 # Run Consurf
 getCons = ConsurfRunner(pdb_id=pdb_id, email=email, job_id=job_id)
 chain_id = getCons.out_chain_id()
 getCons.run_job()
 
-print("Analyzing results...")
-# Read the results fetched by the above tools and modify the Protein object accordingly to record the properties of
-# AminoAcids.
-
-print("Calculating distances between qualified residues...")
-# # Calculate distance
-# runDistance(file_path, protein)
+# print("Analyzing results...")
+# # Read the results fetched by the above tools and modify the Protein object accordingly to record the properties of
+# # AminoAcids.
 #
-# output_result(protein)
+# print("Calculating distances between qualified residues...")
+# # # Calculate distance
+# # runDistance(file_path, protein)
+# #
+# # output_result(protein)
