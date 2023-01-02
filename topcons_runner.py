@@ -7,7 +7,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from webdriver_manager.chrome import ChromeDriverManager
 
 
-def run_topcons(pdb_id):
+def run_topcons(pdb_id, chainID):
 
     r"""
     Runs the topcons server to determine membrane affiliation of residues
@@ -20,11 +20,14 @@ def run_topcons(pdb_id):
     """
 
     # Data preparation. Extract sequence from the MSA fasta file
-    with open(f"{pdb_id}_MSA.fasta", "r") as infile:
-        with open(f"{pdb_id}_SEQ.fasta", "w") as outfile:
-            for i in range(2):
-                line = infile.readline()
-                outfile.write(line)
+    # with open(f"{pdb_id}_MSA.fasta", "r") as infile:
+    #     with open(f"{pdb_id}_SEQ.fasta", "w") as outfile:
+    #         for i in range(2):
+    #             line = infile.readline()
+    #             outfile.write(line)
+    # with open(f"{pdb_id}_SEQ.fasta", "w") as outfile:
+
+
 
     # Starts a webdriver
     driver = webdriver.Chrome(ChromeDriverManager().install())
@@ -34,7 +37,7 @@ def run_topcons(pdb_id):
 
     # Provide the sequence
     seq_FILE = driver.find_element(By.XPATH, "/html/body/table[2]/tbody/tr/td[2]/table/tbody/tr/td/div/table[1]/tbody/tr/td/form/p[2]/input")
-    seq_path = os.path.join(current_path, f"{pdb_id}_SEQ.fasta")
+    seq_path = os.path.join(current_path, f"{pdb_id}_{chainID}_SEQ.fasta")
     seq_FILE.send_keys(seq_path)
 
     # Submit job
@@ -64,10 +67,10 @@ def run_topcons(pdb_id):
     result_url = driver.current_url
 
     # Fetch result
-    with open(pdb_id + "_MEM.txt", "w") as out:
+    with open(f"{pdb_id}_{chainID}_MEM.txt", "w") as out:
         out.write(requests.get(result_url).text)
 
-    print(f"{pdb_id}_MEM.txt has been successfully generated.")
+    print(f"{pdb_id}_{chainID}_MEM.txt has been successfully generated.")
 
     driver.quit()
 

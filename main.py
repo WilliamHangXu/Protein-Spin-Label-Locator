@@ -3,7 +3,7 @@ from pdb_downloader import PDBDownloader
 from primary_sequence import get_seq
 from protein_seq import Protein
 from msa_converter import msa_convert
-from seqret_runner import SeqretRunner
+# from seqret_runner import SeqretRunner
 from mmseqs_runner import MMSeqs2Runner
 from dssp_runner import DSSPRunner
 from datetime import datetime
@@ -36,23 +36,23 @@ protein = Protein(pdb_id=pdb_id)
 
 print("Starting to convert the sequence into FASTA format...")
 
-# get a fasta file of the sequence
-getF = SeqretRunner(email=email, job_id=job_id, mode="fasta", seq=seq, out_name=f"{pdb_id}_SEQ")
-fasta_path = getF.run_job()
+# # get a fasta file of the sequence
+# getF = SeqretRunner(email=email, job_id=job_id, mode="fasta", seq=seq, out_name=f"{pdb_id}_SEQ")
+# fasta_path = getF.run_job()
 
 print("Starting to fetch MSA...")
-# get MSA file in a3m format and convert it into clustal format
+# get MSA file in a3m format and convert it into fasta format
 getMSA = MMSeqs2Runner(job=job_id, seq=seq)
 getMSA.run_job(pdb_id)
 print("MSA fetched. Starting to convert MSA into CLUSTAL format...")
 msa_convert(pdb_id)
 
-print("Predicting secondary structures...")
+print("Predicting secondary structures and solvent exposure...")
 # Run DSSP
 getSecStruct = DSSPRunner(file_name=pdb_id)
 getSecStruct.run_job()
 
-protein.check_secstruct()
+protein.check_dssp()
 protein.display()
 
 print("Predicting membrane exposure...")

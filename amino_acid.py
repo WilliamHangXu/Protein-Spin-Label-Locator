@@ -11,6 +11,7 @@ class AminoAcid:
         self._cons: the conservation score of the residue (from the ConSurf server)
         self._mem: the membrane affiliation (from the Topcons server)
         self._secstruct: the type of secondary structure the residue is in (from DSSP)
+        self._solex: the solvent accessibility of the residue (from DSSP)
     """
 
     d3to1 = {'CYS': 'C', 'ASP': 'D', 'SER': 'S', 'GLN': 'Q', 'LYS': 'K',
@@ -20,12 +21,13 @@ class AminoAcid:
 
     def __init__(
             self,
-            num = "",
+            num = 0,
             chain_id = "",
             aa = "",
             cons: float = 0,
             mem: str = "",
-            secstruct: str = ""
+            secstruct: str = "",
+            solex: int = 0
                  ):
 
         r"""
@@ -43,8 +45,9 @@ class AminoAcid:
         self._cons = cons
         self._mem = mem
         self._secstruct = secstruct
+        self._solex = solex
 
-    def set_num(self, num: str):
+    def set_num(self, num: int):
 
         r"""
         Sets num.
@@ -104,7 +107,17 @@ class AminoAcid:
 
         self._secstruct = secstruct
 
-    def get_num(self) -> str:
+    def set_solex(self, solex):
+
+        r"""
+        Sets solvent accessibility of the residue
+        :param solex: solvent accessibility
+        :return: N/A
+        """
+
+        self._solex = solex
+
+    def get_num(self) -> int:
 
         r"""
         Returns num.
@@ -158,6 +171,15 @@ class AminoAcid:
 
         return self._secstruct
 
+    def get_solex(self) -> int:
+
+        r"""
+        Returns solex
+        :return: solex
+        """
+
+        return self._solex
+
     def aa_display(self):
 
         r"""
@@ -165,7 +187,7 @@ class AminoAcid:
         :return: N/A
         """
 
-        str = f"{self._num} {self._chain_id} {self._aa} {self._mem} {self._cons} {self._secstruct}"
+        str = f"{self._num} {self._chain_id} {self._aa} {self._mem} {self._solex} {self._cons} {self._secstruct}"
         print(str)
 
 

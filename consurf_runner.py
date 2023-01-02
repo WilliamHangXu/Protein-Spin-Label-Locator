@@ -62,7 +62,7 @@ class ConsurfRunner:
         self._pdb_id = pdb_id
         self._email = email
         self._chain_id = self._get_chain_id()
-        self._q_seq = self._get_q_seq()
+        # self._q_seq = self._get_q_seq()
         self._job_id = job_id
 
     def _get_chain_id(self) -> str:
@@ -95,29 +95,29 @@ class ConsurfRunner:
                 chain_user = input("Chain identifier invalid. Please try again: ")
         return chain_user
 
-    def _get_q_seq(self) -> str:
-
-        r"""
-        Gets user's input for query sequence and checks if the query sequence is present in the MSA file.
-        :return: A valid query sequence
-        """
-
-        current_path = os.getcwd()
-        MSA_path = os.path.join(current_path, f"{self._pdb_id}.a3m")
-        q_seq_list = []
-        with open(MSA_path, "r") as file:
-            line = file.readline()
-            while line != "":
-                q_seq_list.append(line.split()[0][1:])
-                line = file.readline()
-                line = file.readline()
-        q_seq_user = input("Please select query sequence: ")
-        while True:
-            if q_seq_user in q_seq_list:
-                break
-            else:
-                q_seq_user = input("Chain identifier invalid. Please try again: ")
-        return q_seq_user
+    # def _get_q_seq(self) -> str:
+    #
+    #     r"""
+    #     Gets user's input for query sequence and checks if the query sequence is present in the MSA file.
+    #     :return: A valid query sequence
+    #     """
+    #
+    #     current_path = os.getcwd()
+    #     MSA_path = os.path.join(current_path, f"{self._pdb_id}.a3m")
+    #     q_seq_list = []
+    #     with open(MSA_path, "r") as file:
+    #         line = file.readline()
+    #         while line[0] == "-" or line[0] == ">" or line[0].isalpha():
+    #             q_seq_list.append(line.split()[0][1:])
+    #             line = file.readline()
+    #             line = file.readline()
+    #     q_seq_user = input("Please select query sequence: ")
+    #     while True:
+    #         if q_seq_user in q_seq_list:
+    #             break
+    #         else:
+    #             q_seq_user = input("Chain identifier invalid. Please try again: ")
+    #     return q_seq_user
 
     def out_chain_id(self) -> str:
 
@@ -227,7 +227,7 @@ class ConsurfRunner:
         # Choose query sequence name
         QS = driver.find_element(By.XPATH, "//*[@id='queryName']")
         QS_drop = Select(QS)
-        QS_drop.select_by_visible_text(self._q_seq)
+        QS_drop.select_by_visible_text("101")
 
         # Update selection
         update_selection = driver.find_element(By.XPATH, "/html/body/div[3]/div/form/div[3]/div[2]/div[1]/div[2]/a[2]")

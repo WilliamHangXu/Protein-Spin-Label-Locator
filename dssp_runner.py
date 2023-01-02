@@ -8,7 +8,7 @@ class DSSPRunner:
     r"""
     Class name: DSSPRunner
     Description: This program runs Dictionary of Secondary Structure of Proteins (DSSP) through the XSSP API.
-                 Uploads a PDB file an get a .dssp file.
+                 Uploads a PDB file and get a .dssp file.
                  https://github.com/cmbi/xssp-api
                  Modified from the provided sample API.
                  The server crashes very often. In that case, please contact the developer on GitHub.

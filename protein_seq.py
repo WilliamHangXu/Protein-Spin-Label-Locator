@@ -1,4 +1,5 @@
 from amino_acid import AminoAcid
+from Bio import PDB
 
 
 class Protein:
@@ -29,12 +30,26 @@ class Protein:
                 self._seqdict[chainID] = []
                 while line.startswith("ATOM"):
                     order = line.split()[5]
-                    aa = AminoAcid(num=line.split()[5], chain_id=chainID, aa=line.split()[3])
+                    aa = AminoAcid(num=int(line.split()[5]), chain_id=chainID, aa=line.split()[3])
                     self._seqdict[chainID].append(aa)
                     while line.startswith("ATOM") and line.split()[5] == order:
                         line = file.readline()
                 if line.startswith("TER"):
                     line = file.readline()
+
+    def get_seq(self, chainID: str):
+        str = ""
+        for i in self._seqdict[chainID]:
+            str += i.get_aa()
+        return str
+
+    def get_seq_fasta(self, chainID: str):
+        seq = ""
+        for i in self._seqdict[chainID]:
+            seq += i.get_aa()
+        with open(f"{self._pdb_id}_{chainID}_SEQ.fasta", "w") as f:
+            f.write(f">{self._pdb_id}\n")
+            f.write(seq)
 
     def display(self):
 
@@ -42,6 +57,7 @@ class Protein:
         Print the Protein object
         :return: N/A
         """
+        print("ORDER | CHAINID | NAME | MEM | SOLEX | CONS | SECSTRUCT")
 
         for i in self._seqdict:
             for j in self._seqdict[i]:
@@ -51,7 +67,7 @@ class Protein:
 
         r"""
         Get the number of residues stored in the Protein object.
-        :return:
+        :return: the number of residues stored in the protein object
         """
 
         length = 0
@@ -59,7 +75,17 @@ class Protein:
             length += len(self._seqdict[i])
         return length
 
-    def check_secstruct(self):
+    def get_chain_length(self, chainID: str):
+
+        r"""
+        Get the number of residues stored in a particular chain.
+        :param chainID: chain identifier
+        :return: the number of residues stored in the chain
+        """
+
+        return len(self._seqdict[chainID])
+
+    def check_dssp(self):
 
         r"""
         Reads the .dssp file and sets secondary structures for each AminoAcid.
@@ -75,6 +101,7 @@ class Protein:
                 chainID = line.split()[2]
                 idx = 0
                 while line != "" and line.split()[2] == chainID:
+                    self._seqdict[line.split()[2]][idx].set_solex(int(line[35:38].replace(" ", "")))
                     if line.split()[4] in "HBEGITS":
                         self._seqdict[line.split()[2]][idx].set_secstruct(line.split()[4])
                     else:
@@ -86,7 +113,7 @@ class Protein:
                 else:
                     break
 
-    def check_mem(self):
+    def check_mem(self, chainID: str):
 
         r"""
         TO BE COMPLETED
@@ -94,16 +121,15 @@ class Protein:
         :return: N/A
         """
 
-        # with open(f"{self._pdb_id}_MEM.txt", "r") as file:
+        with open(f"{self._pdb_id}_{chainID}_MEM.txt", "r") as file:
+            line = file.readline()
+            while not line.startswith("TOPCONS predicted topology"):
+                line = file.readline()
+            line = file.readline().strip()
+            for i in range(len(line)):
+                self._seqdict[chainID][i].set_mem(line[i])
 
-
-
-
-
-        return 0
-
-
-    def check_cons(self):
+    def check_cons(self, chianID: str):
 
         r"""
         TO BE COMPLETED
