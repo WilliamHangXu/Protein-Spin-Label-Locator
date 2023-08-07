@@ -1,0 +1,15 @@
+*
+
+!amino_acid.py
+!consurf_runner.py
+!dssp_runner.py
+!main.py
+!mmseqs_runner.py
+!msa_converter.py
+!pdb_downloader.py
+!primary_sequence.py
+!protein_seq.py
+!seqret_runner.py
+!README.md
+!topcons_runner.py
+!.gitignore
